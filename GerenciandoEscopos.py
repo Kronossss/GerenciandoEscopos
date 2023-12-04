@@ -5,6 +5,7 @@ import re
 # Classe para representar símbolos na tabela de símbolos
 class Symbolos:
     def __init__(self, lexeme, tipo, value=None):
+        # Inicializa um símbolo com lexema, tipo e valor opcional
         self.lexeme = lexeme.strip()
         self.tipo = tipo
         self.value = value
@@ -12,7 +13,9 @@ class Symbolos:
 # Classe para representar a tabela de símbolos
 class TabelaSimbolos:
     def __init__(self):
+        # Inicializa a tabela de símbolos como um dicionário vazio
         self.Simbolos = {}
+    
     # Adiciona um símbolo à tabela de símbolos
     def add_Symbolos(self, Symbolos):
         self.Simbolos[Symbolos.lexeme] = Symbolos
@@ -22,11 +25,14 @@ class AnalisadorSemanticoo:
     def __init__(self):
         # Inicializa a tabela de símbolos com uma tabela vazia
         self.tabelas_simbolos = [TabelaSimbolos()]
+        # Define tipos válidos para validação semântica
         self.tipos_validos = {'NUMERO': (int, float), 'CADEIA': str}
+    
     # Executa uma lista de instruções
     def execute_instructions(self, instructions):
         for instruction in instructions:
             self.execute_instruction(instruction)
+    
     # Executa uma instrução
     def execute_instruction(self, instruction):
         # Se a instrução é uma lista, executa cada sub-instrução
@@ -126,7 +132,7 @@ class AnalisadorSemanticoo:
 
 # Classe para o processador semântico
 class ProcesadorSemantico:
-     # Processa o código de um arquivo
+    # Processa o código de um arquivo
     def processo_code_from_file(self, filename):
         with open(filename, 'r', encoding='utf-8') as file:
             content = file.read()
@@ -189,7 +195,7 @@ class ProcesadorSemantico:
 def main():
     Procesador = ProcesadorSemantico()
     analisador = AnalisadorSemanticoo()
-     # Define o arquivo de código
+    # Define o arquivo de código
     code_file = "arquivo.txt"
     instructions = Procesador.processo_code_from_file(code_file)
     # Executa as instruções
